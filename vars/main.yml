@@ -1,0 +1,11 @@
+---
+config_network_bonds: true
+config_network_bridges: true
+config_network_interfaces: true
+config_network_vlans: true
+enable_configured_interfaces_after_defining: true
+
+pri_domain_name: deploy.openstack.local
+
+ipam_file: files/ipam_nettest.csv
+net_vars_template: template:/net_vars.j2

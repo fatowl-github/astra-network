@@ -1,0 +1,140 @@
+---
+network_bonds:
+  - name: bond0
+    address: "{{ pxe_ip }}"
+    netmask: "{{ pxe_mask }}"
+    gateway: "{{ pxe_gw }}"
+    configure: true
+    enable: false
+    comment: Bond Group 0
+    method: static
+    parameters:
+      - param: bond_mode
+        val: 4
+      - param: bond_miimon
+        val: 100
+      - param: bond_xmit_hash_policy
+        val: layer3+4
+      - param: bond_lasp_rate
+        val: fast
+    slaves:
+      - eno1
+      - eno2
+###
+  - name: bond1
+    configure: true
+    enable: false
+    comment: Bond Group 1
+    method: manual
+    parameters:
+      - param: bond_mode
+        val: 4
+      - param: bond_miimon
+        val: 100
+      - param: bond_xmit_hash_policy
+        val: layer3+4
+      - param: bond_lasp_rate
+        val: fast
+    slaves:
+      - enp95s0f0
+      - eno95s0f1
+
+
+#############################################################
+network_vlans:
+  - name: bond0.2260
+    configure: true
+    enable: false
+    comment: VLAN 2260
+    method: manual
+#        address:
+#        netmask:
+#        gateway:
+    vlan_device: bond0
+###
+  - name: bond0.2210
+    configure: true
+    enable: false
+    comment: VLAN 2210
+    method: manual
+#        address:
+#        netmask:
+#        gateway:
+    vlan_device: bond0
+###
+  - name: bond1.1200
+    configure: true
+    enable: false
+    comment: VLAN 1200
+    method: manual
+#        address:
+#        netmask:
+#        gateway:
+    vlan_device: bond1
+
+
+################################################################
+network_bridges:
+  - name: br_srv
+    configure: true
+    enable: false
+    comment: Bridge br_srv
+    method: static
+    address: "{{ item.if_br_usrv_ip }}"
+    netmask: "{{ item.if_br_usrv_mask }}"
+    parameters:
+      - param: bridge_stp
+        val: off
+      - param: bridge_fd
+        val: 0
+    ports:
+      - bond0.2260
+###
+  - name: br_mgt
+    configure: true
+    enable: false
+    comment: Bridge br_mgt
+    method: static
+    address: "{{ item.if_br_umgt_ip }}"
+    netmask: "{{ item.if_br_umgt_mask }}"
+    parameters:
+      - param: bridge_stp
+        val: off
+      - param: bridge_fd
+        val: 0
+    ports:
+      - bond0.2210
+###
+  - name: br_stg
+    configure: true
+    enable: false
+    comment: Bridge br_stg
+    method: static
+    address: "{{ item.if_br_ustg_ip }}"
+    netmask: "{{ item.if_br_ustg_mask }}"
+    parameters:
+      - param: bridge_stp
+        val: off
+      - param: bridge_fd
+        val: 0
+    ports:
+      - bond1.1200
+  
+
+##################################################
+network_interfaces:
+  - name: eno1
+    configure: true
+    method: manual
+
+  - name: eno2
+    configure: true
+    method: manual
+
+  - name: enp95s0f0
+    configure: true
+    method: manual
+
+  - name: enp95s0f1
+    configure: true
+    method: manual

@@ -1,0 +1,3 @@
+var_host_name,var_serial,if_br_umgt,if_br_umgt_ip,if_br_umgt_mask,if_br_umgt_gw,if_br_iscsi1,if_br_iscsi1_ip,if_br_iscsi1_mask,if_br_iscsi1_gw,if_br_iscsi2,if_br_iscsi2_ip,if_br_iscsi2_mask,if_br_iscsi2_gw,if_br_usrv,if_br_usrv_ip,if_br_usrv_mask,if_br_uprt_gw,if_br_upxe,if_br_ustg,if_br_ustg_ip,if_br_ustg_mask,if_br_ustg_gw
+nettest01,JS63B33 ,true,10.15.140.89,255.255.255.192,10.15.140.126,false,,,,false,,,,true,10.15.140.219,255.255.255.192,10.15.140.254,false,true,10.15.141.24,255.255.255.192,10.15.141.62
+nettest02,87K3B33 ,true,10.15.140.90,255.255.255.192,10.15.140.126,false,,,,false,,,,true,10.15.140.220,255.255.255.192,10.15.140.254,false,true,10.15.141.25,255.255.255.192,10.15.141.62
