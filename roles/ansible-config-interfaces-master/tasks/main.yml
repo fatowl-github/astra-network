@@ -1,0 +1,13 @@
+---
+# tasks file for ansible-config-interfaces
+#- include: debian.yml
+#  when: ansible_os_family == "Debian"
+
+- include: debian.yml
+  when: ansible_os_family == "Astra Linux (Smolensk 1.6)"
+
+
+- include: redhat.yml
+  when: ansible_os_family == "RedHat"
+
+

@@ -1,0 +1,2 @@
+[astra11]
+host10 ansible_connection=ssh ansible_user=deploy ansible_become=true
